@@ -5,9 +5,9 @@ Android APK for Prism Match.
 ## Download
 
 - APK: https://raw.githubusercontent.com/LeshaSolo/Stas_bot/main/PrismMatch/PrismMatch.apk
-- SHA-256: `8ae058410f96620155623c745cd656bd186223d30f6a17529968548e2bfd2f35`
+- SHA-256: `964a07d44721266750c7800306ad7646b902f1cf5175385cf514cd0ab6679b0f`
 
 ## Version
 
-- versionName: `0.3`
-- versionCode: `3`
+- versionName: `0.4`
+- versionCode: `4`
