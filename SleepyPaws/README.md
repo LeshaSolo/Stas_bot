@@ -5,9 +5,9 @@ Android debug APK for Sleepy Paws / Сонные зверята.
 ## Download
 
 - APK: https://raw.githubusercontent.com/LeshaSolo/Stas_bot/main/SleepyPaws/SleepyPaws.apk
-- SHA-256: `8ba7361fe51e747ae50627c17319c6f6d9f1f602a8c8d5c89223fae58239bd86`
+- SHA-256: `6b961af503cdde67e2bab6311b9b4b254d15f9abd30d48e1c65819e6e32c2aba`
 
 ## Version
 
-- versionName: `0.1.1`
-- versionCode: `11`
+- versionName: `0.2.0`
+- versionCode: `20`

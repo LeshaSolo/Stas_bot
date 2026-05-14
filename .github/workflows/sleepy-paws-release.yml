@@ -20,16 +20,17 @@ jobs:
       - name: Publish APK release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: sleepy-paws-v0.1.1+11
-          TITLE: Sleepy Paws 0.1.1
+          TAG: sleepy-paws-v0.2.0+20
+          TITLE: Sleepy Paws 0.2.0
         run: |
           cat > /tmp/sleepy-paws-notes.md <<'NOTES'
-          versionCode: 11
+          versionCode: 20
 
-          - Added mobile swipe/drag swapping in addition to tap-tap swapping.
-          - Added valid-move validation and automatic board reshuffle when no moves remain.
-          - Added score feedback on the test level.
-          - Keeps package id com.sleepypaws.game for in-app updates from Sleepy Paws 0.1.0 and newer.
+          - Added Mimi Mouse as the first mini-world.
+          - Added 5 playable mouse levels with unique goals.
+          - Added Mimi idle spritesheet, mouse tile set, cozy nook home, soft obstacles, and home progress.
+          - Switched Phaser to Canvas renderer for more reliable WebView/headless rendering.
+          - Keeps package id com.sleepypaws.game for in-app updates.
           NOTES
 
           if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
