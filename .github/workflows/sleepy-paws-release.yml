@@ -1,0 +1,41 @@
+name: Sleepy Paws Release
+
+on:
+  push:
+    paths:
+      - "SleepyPaws/SleepyPaws.apk"
+      - "SleepyPaws/README.md"
+      - ".github/workflows/sleepy-paws-release.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish APK release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: sleepy-paws-v0.1.0+10
+          TITLE: Sleepy Paws 0.1.0
+        run: |
+          cat > /tmp/sleepy-paws-notes.md <<'NOTES'
+          versionCode: 10
+
+          - First Sleepy Paws APK after migration from the old Prism Match package.
+          - New Android package id: com.sleepypaws.game.
+          - Phaser 3 + TypeScript + Vite + Capacitor foundation.
+          - Main menu, world map placeholder, animal home placeholder, dream placeholder, and one playable match-3 test level.
+          - In-app updates now use SleepyPaws.apk for future builds with the same package id.
+          NOTES
+
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$TAG" SleepyPaws/SleepyPaws.apk#SleepyPaws.apk --repo "$GITHUB_REPOSITORY" --clobber
+            gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --title "$TITLE" --notes-file /tmp/sleepy-paws-notes.md
+          else
+            gh release create "$TAG" SleepyPaws/SleepyPaws.apk#SleepyPaws.apk --repo "$GITHUB_REPOSITORY" --title "$TITLE" --notes-file /tmp/sleepy-paws-notes.md
+          fi
