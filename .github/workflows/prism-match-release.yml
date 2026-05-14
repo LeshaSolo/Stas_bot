@@ -20,12 +20,14 @@ jobs:
       - name: Publish APK release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: prism-match-v0.6+6
-          TITLE: Prism Match 0.6
+          TAG: prism-match-v0.7+7
+          TITLE: Prism Match 0.7
         run: |
           cat > /tmp/prism-match-notes.md <<'NOTES'
-          versionCode: 6
+          versionCode: 7
 
+          - Made the game board the primary screen element with larger crystals and a much more compact top HUD.
+          - Added a deeper crystal-cavern backdrop, stronger board lighting, richer gem bevels, fall trails, upgraded special-tile effects, and custom settings toggles.
           - Added the installed app version to the settings screen.
           - Added richer procedural visuals, stronger board depth, improved gem highlights, combo scoring, floating score feedback, move hints, screen shake, rocket beams, stronger special-tile combos, and sound/music volume sliders.
           - Replaced placeholder music with a procedural WebAudio soundtrack.
