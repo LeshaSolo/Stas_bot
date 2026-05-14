@@ -1,0 +1,40 @@
+name: Prism Match Release
+
+on:
+  push:
+    paths:
+      - "PrismMatch/PrismMatch.apk"
+      - "PrismMatch/README.md"
+      - ".github/workflows/prism-match-release.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish APK release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: prism-match-v0.2+2
+          TITLE: Prism Match 0.2
+        run: |
+          cat > /tmp/prism-match-notes.md <<'NOTES'
+          versionCode: 2
+
+          - Added 10 level-based match-3 stages with score, collection, special, and ice goals.
+          - Added bomb, rocket, and orb power-ups based on 4/5/6+ matches.
+          - Added procedural gem rendering, particles, sounds, music toggle, and settings.
+          - Added in-app GitHub APK update checks.
+          NOTES
+
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$TAG" PrismMatch/PrismMatch.apk#PrismMatch.apk --repo "$GITHUB_REPOSITORY" --clobber
+            gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --title "$TITLE" --notes-file /tmp/prism-match-notes.md
+          else
+            gh release create "$TAG" PrismMatch/PrismMatch.apk#PrismMatch.apk --repo "$GITHUB_REPOSITORY" --title "$TITLE" --notes-file /tmp/prism-match-notes.md
+          fi
