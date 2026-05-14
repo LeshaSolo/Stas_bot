@@ -20,17 +20,16 @@ jobs:
       - name: Publish APK release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: sleepy-paws-v0.1.0+10
-          TITLE: Sleepy Paws 0.1.0
+          TAG: sleepy-paws-v0.1.1+11
+          TITLE: Sleepy Paws 0.1.1
         run: |
           cat > /tmp/sleepy-paws-notes.md <<'NOTES'
-          versionCode: 10
+          versionCode: 11
 
-          - First Sleepy Paws APK after migration from the old Prism Match package.
-          - New Android package id: com.sleepypaws.game.
-          - Phaser 3 + TypeScript + Vite + Capacitor foundation.
-          - Main menu, world map placeholder, animal home placeholder, dream placeholder, and one playable match-3 test level.
-          - In-app updates now use SleepyPaws.apk for future builds with the same package id.
+          - Added mobile swipe/drag swapping in addition to tap-tap swapping.
+          - Added valid-move validation and automatic board reshuffle when no moves remain.
+          - Added score feedback on the test level.
+          - Keeps package id com.sleepypaws.game for in-app updates from Sleepy Paws 0.1.0 and newer.
           NOTES
 
           if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
